@@ -1,0 +1,37 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Proportion of Adults Who Exceeded Guideline by Age, 2022",
+  "data": {"url": "Proportion of adults who exceeded guideline by age, 2022 (1).csv"},
+  "transform": [
+    {"fold": [
+      "Consumed more than 10 drinks in the last week (%)",
+      "Consumed 5 or more drinks on any day in the last 12 months at least monthly(a) (%)",
+      "Total exceeded guideline (%)"
+    ],
+    "as": ["Category", "Percent"]}
+  ],
+  "mark": {"type": "line", "point": true},
+  "encoding": {
+    "x": {
+      "field": "Age group",
+      "type": "ordinal",
+      "sort": [
+        "18–24",
+        "25–34",
+        "35–44",
+        "45–54",
+        "55–64",
+        "65–74",
+        "75 years and over"
+      ],
+      "title": "Age group"
+    },
+    "y": {
+      "field": "Percent",
+      "type": "quantitative",
+      "title": "Percent (%)"
+    },
+    "color": {"field": "Category", "type": "nominal"},
+    "tooltip": ["Age group", "Category", "Percent"]
+  }
+}

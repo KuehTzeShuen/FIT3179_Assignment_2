@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": "container",
+  "autosize": {"type": "fit", "contains": "padding"},
+  "title": "Alcohol Guideline Exceedance by Age and Sex (2022)",
+  "data": {"url": "Alcohol consumption by sex.csv"},
+  "transform": [
+    {"filter": "datum.Category == 'Total exceeded guideline'"},
+    {
+      "calculate": "datum.Sex == 'Male' ? -datum.Value : datum.Value",
+      "as": "SignedValue"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "Age group",
+      "type": "ordinal",
+      "sort": ["15–17", "18–24", "25–34", "35–44", "45–54", "55–64", "65 years and over"],
+      "title": "Age group"
+    },
+    "x": {
+      "field": "SignedValue",
+      "type": "quantitative",
+      "axis": {"title": "Population ('000)", "labelExpr": "abs(datum.value)", "format": ".0f"},
+      "scale": {"domain": [-700, 700]}
+    },
+    "color": {
+      "field": "Sex",
+      "type": "nominal",
+      "scale": {"domain": ["Male", "Female"], "range": ["lightblue", "pink"]}
+    }
+  },
+  "mark": "bar",
+  "config": {"view": {"stroke": "transparent"}}
+}

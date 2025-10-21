@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": "container",
+  "autosize": {"type": "fit", "contains": "padding"},
+  "title": {
+    "text": "Proportion of adults who exceeded guideline by age, 2022"
+  },
+  "data": {"url": "Proportion of adults who exceeded guideline by age, 2022 (1).csv"},
+  "layer": [
+    {
+      "mark": {"type": "rule", "strokeWidth": 2, "color": "#ccc"},
+      "encoding": {
+        "y": {
+          "field": "Age group",
+          "type": "ordinal",
+          "title": "Age group"
+        },
+        "x": {"field": "Consumed more than 10 drinks in the last week (%)", "type": "quantitative"},
+        "x2": {"field": "Consumed 5 or more drinks on any day in the last 12 months at least monthly(a) (%)", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 100, "color": "#1f77b4"},
+      "encoding": {
+        "y": {
+          "field": "Age group",
+          "type": "ordinal"
+        },
+        "x": {"field": "Consumed more than 10 drinks in the last week (%)", "type": "quantitative"},
+        "tooltip": [
+          {"field": "Age group", "title": "Age group"},
+          {"field": "Consumed more than 10 drinks in the last week (%)", "title": "Consumed more than 10 drinks in the last week (%)"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 100, "color": "#210050"},
+      "encoding": {
+        "y": {
+          "field": "Age group",
+          "type": "ordinal"
+        },
+        "x": {"field": "Consumed 5 or more drinks on any day in the last 12 months at least monthly(a) (%)", "type": "quantitative"},
+        "tooltip": [
+          {"field": "Age group", "title": "Age group"},
+          {"field": "Consumed 5 or more drinks on any day in the last 12 months at least monthly(a) (%)", "title": "Consumed 5 or more drinks on any day in the last 12 months at least monthly(a) (%)"}
+        ]
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "title": "Proportion of adults (%)",
+      "scale": {"domain": [0, 40]},
+      "axis": {"grid": true}
+    }
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 12, "titleFontSize": 13}
+  }
+}

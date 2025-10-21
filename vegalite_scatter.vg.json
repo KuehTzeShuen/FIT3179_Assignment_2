@@ -1,0 +1,34 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": "container",
+  "autosize": {"type": "fit", "contains": "padding"},
+  "title": "Per-Capita Alcohol Consumption by Beverage Type in Australia (1980–2018)",
+  "data": {"url": "alcohol2.csv"},
+  "transform": [
+    {"fold": ["Beer (L)", "Wine (L)", "Spirits(b) (L)", "Cider (L)", "Total (L)"],
+     "as": ["Beverage", "Litres"]
+    },
+    {
+     "filter": {"param": "highlight"}
+    }
+
+  ],
+  "mark": { "type": "line", "point": true },
+  "encoding": {
+    "x": {"field": "Year ended 30 June", "type": "ordinal", "title": "Year"},
+    "y": {"field": "Litres", "type": "quantitative", "title": "Litres of Pure Alcohol per Capita"},
+    "color": {"field": "Beverage", "type": "nominal", "title": "Type of Alcohol", "legend": {"orient": "bottom"}},
+    "tooltip": [
+      {"field": "Year ended 30 June", "title": "Year"},
+      {"field": "Beverage"},
+      {"field": "Litres"}
+    ]
+  },
+  "params": [
+    {
+      "name": "highlight",
+      "select": {"type": "point", "fields": ["Beverage"], "bind": "legend" }
+    }
+  ]
+}

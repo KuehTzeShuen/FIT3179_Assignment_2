@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Change in Alcohol Consumption Compared to 12 Months Ago, by Age (2022)",
+    "subtitle": "Source: Australian Bureau of Statistics, Alcohol Consumption 2022"
+  },
+  "width": 700,
+  "height": 400,
+  "data": {"url": "Proportion of adults by self-reported consumption of alcohol compared to 12 months ago and age, 2022.csv"},
+  "layer": [
+    {
+      "mark": {"type": "rule", "strokeWidth": 2, "color": "#ccc"},
+      "encoding": {
+        "y": {"field": "Age", "type": "ordinal", "sort": "-x"},
+        "x": {"field": "Increased", "type": "quantitative"},
+        "x2": {"field": "Decreased"}
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 100},
+      "encoding": {
+        "y": {"field": "Age", "type": "ordinal", "sort": "-x"},
+        "x": {"field": "Increased", "type": "quantitative"},
+        "color": {"value": "#1f77b4"},
+        "tooltip": [
+          {"field": "Age", "type": "nominal"},
+          {"field": "Increased", "type": "quantitative", "title": "Increased (%)"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 100},
+      "encoding": {
+        "y": {"field": "Age", "type": "ordinal", "sort": "-x"},
+        "x": {"field": "Decreased", "type": "quantitative"},
+        "color": {"value": "#d62728"},
+        "tooltip": [
+          {"field": "Age", "type": "nominal"},
+          {"field": "Decreased", "type": "quantitative", "title": "Decreased (%)"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "point", "shape": "square", "size": 80, "filled": true},
+      "encoding": {
+        "y": {"field": "Age", "type": "ordinal", "sort": "-x"},
+        "x": {"field": "Same", "type": "quantitative"},
+        "color": {"value": "#2ca02c"},
+        "tooltip": [
+          {"field": "Age", "type": "nominal"},
+          {"field": "Same", "type": "quantitative", "title": "Stayed the same (%)"}
+        ]
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "title": "Proportion of adults (%)",
+      "scale": {"domain": [0, 90]},
+      "axis": {"grid": true}
+    },
+    "y": {"title": "Age group"}
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 12, "titleFontSize": 13},
+    "legend": {"title": null}
+  }
+}

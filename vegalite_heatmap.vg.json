@@ -1,0 +1,16 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Heatmap of Alcohol Guideline Exceedance by Age and Sex",
+  "data": {"url": "Alcohol consumption by sex.csv"},
+  "transform": [
+    {"fold": ["15–17","18–24","25–34","35–44","45–54","55–64","65 years and over"],
+     "as": ["Age group", "Estimate_000"]}
+  ],
+  "mark": "rect",
+  "encoding": {
+    "x": {"field": "Age group", "type": "ordinal"},
+    "y": {"field": "Category", "type": "nominal"},
+    "color": {"field": "Estimate_000", "type": "quantitative"},
+    "facet": {"field": "Sex", "columns": 1}
+  }
+}
